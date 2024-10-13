@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.37/moment-timezone-with-data-1970-2030.min.js"></script>
+    <title>Time zone dropdown</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 30px;
+        }
+        form{
+            display: block;
+            margin: 2em auto;
+            text-align: center;
+        }
+        select{
+            padding: 6px;
+            border-radius: 14px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+        <form action="" id="city-timezones-form">
+            <label for="cities">Select a city</label>
+            <select name="cities" id="cities">
+                <option value="">Select</option>
+                <option value="Asia/Tokyo" id="tokyo">Tokyo</option>
+                <option value="Europe/Paris" id="paris">Paris</option>
+                <option value="Australia/Sydney" id="sydney">Sydney</option>
+            </select>
+        </form>    
+</body>
+<script>
+    
+    function showCityTime(event){
+        let selectedCity = event.target.value;
+        let cityTime = moment()
+                          .tz(`${selectedCity}`)
+                          .format("dddd, MMMM D, YYYY hh:mm A");
+
+        if (event.target.value.length > 0) {
+    
+      alert(`It is ${cityTime} in ${selectedCity}`);
+    }
+    
+  }  
+    
+
+    let selectCity = document.querySelector("#cities");
+    selectCity.addEventListener("change", showCityTime);
+</script>
+</html>
